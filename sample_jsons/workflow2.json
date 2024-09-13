@@ -1,0 +1,8 @@
+{
+    "workflow": [
+        {"name": "Step 15", "type": "sequential", "parameters": {"task": "Start Process"}},
+        {"name": "Step 25", "type": "parallel", "parameters": {"task": "Parallel Task 1"}},
+        {"name": "Step 35", "type": "parallel", "parameters": {"task": "Parallel Task 2"}},
+        {"name": "Step 45", "type": "sequential", "parameters": {"task": "End Process"}}
+    ]
+}

@@ -1,0 +1,35 @@
+{
+  "contentVersion": "abc",
+  "name": "abc",
+  "description": "abc",
+  "metadata": {
+    "teamName": "abc",
+    "tenantId": "abc",
+    "revision": "abc",
+    "userEmail": "abc"
+  },
+  "parameters": {},
+  "workflow": [
+    {
+      "type": "abc",
+      "name": "abc",
+      "description": "abc",
+      "group": "abc",
+      "parameters": {
+        "labId": "abc"
+      }
+    },
+    {
+      "type": "abc",
+      "name": "abc",
+      "description": "abc",
+      "group": "abc",
+      "parameters": {
+        "Source": "abc",
+        "ContainerName": "abc",
+        "BlobPath": "abc",
+        "Metadata": "abc"
+      }
+    }
+  ]
+}

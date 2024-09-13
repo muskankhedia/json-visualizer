@@ -1,0 +1,53 @@
+{
+  "company": "Tech Solutions",
+  "employees": [
+    {
+      "name": "Alice Johnson",
+      "position": "Software Engineer",
+      "skills": ["Python", "JavaScript", "Docker"],
+      "experience": 5
+    },
+    {
+      "name": "Bob Smith",
+      "position": "Data Scientist",
+      "skills": ["Python", "R", "SQL"],
+      "experience": 3
+    },
+    {
+      "name": "Charlie Lee",
+      "position": "DevOps Engineer",
+      "skills": ["AWS", "Docker", "Kubernetes"],
+      "experience": 4
+    }
+  ],
+  "projects": [
+    {
+      "name": "AI Chatbot",
+      "status": "Completed",
+      "teamLead": "Alice Johnson",
+      "technologies": ["NLP", "Python", "TensorFlow"]
+    },
+    {
+      "name": "Data Analytics Platform",
+      "status": "In Progress",
+      "teamLead": "Bob Smith",
+      "technologies": ["Python", "Pandas", "SQL"]
+    },
+    {
+      "name": "Cloud Infrastructure",
+      "status": "Planning",
+      "teamLead": "Charlie Lee",
+      "technologies": ["AWS", "Terraform", "Kubernetes"]
+    }
+  ],
+  "officeLocations": [
+    {
+      "city": "New York",
+      "employees": 50
+    },
+    {
+      "city": "San Francisco",
+      "employees": 30
+    }
+  ]
+}
