@@ -3,6 +3,7 @@ import graphviz
 import json
 import io
 import base64
+import os
 
 app = Flask(__name__)
 
@@ -184,4 +185,6 @@ def download_chart():
         return send_file(io.BytesIO(f.read()), mimetype='image/png', as_attachment=True, download_name='workflow_chart.png')
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8000))  # Default to port 8000
+    app.run(host='0.0.0.0', port=port)
     app.run(debug=True)
