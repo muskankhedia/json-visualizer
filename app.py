@@ -189,7 +189,7 @@ def download_chart():
 @app.errorhandler(Exception)
 def handle_exception(e):
     logging.error(f"An error occurred: {e}")
-    return "An error occurred!", 500
+    return "An error occurred! {e}", 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))  # Default to port 8000
