@@ -4,6 +4,7 @@ import json
 import io
 import base64
 import os
+import logging
 
 app = Flask(__name__)
 
@@ -183,6 +184,12 @@ def download_chart():
     # Fetch the latest generated chart
     with open('vertical_workflow_chart.png', 'rb') as f:
         return send_file(io.BytesIO(f.read()), mimetype='image/png', as_attachment=True, download_name='workflow_chart.png')
+
+# Catch all exceptions and log them
+@app.errorhandler(Exception)
+def handle_exception(e):
+    logging.error(f"An error occurred: {e}")
+    return "An error occurred!", 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))  # Default to port 8000
