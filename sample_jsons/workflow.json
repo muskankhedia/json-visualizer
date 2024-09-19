@@ -1,8 +1,510 @@
 {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "contentVersion": "v2",
+    "name": "Oneclick-BKC",
+    "description": "Oneclick-BKC",
+    "metadata": {
+      "teamName": "CRC",
+      "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+      "revision": "2",
+      "userEmail": "bhkris@microsoft.com"
+    },
+    "parameters": {
+      "abbBmcFile": "M1110.OBMC.2.7.13-20240627.9.tar",
+      "abbBmcFwPath": "C:\\EV2_Recipe\\ABB\\BMC\\M1110.OBMC.2.7.13-20240627.9\\M1110.OBMC.2.7.13-20240627.9.tar",
+      "abbBmcPfmFile": "M1110.OBMC.PFMv2.57.bin",
+      "abbBmcPfmFWPath": "C:\\EV2_Recipe\\ABB\\BMC\\M1110.OBMC.2.7.13-20240627.9\\M1110.OBMC.PFMv2.57.bin",
+      "abbBmcVersion": "2.7.3",
+      "abbCerberusFile": "cerberus_v1.5.6.2.bin",
+      "abbCerberusFwPath": "C:\\EV2_Recipe\\ABB\\Cerberus\\v1.5.6.2\\cerberus_v1.5.6.2.bin",
+      "abbCerberusPcdPlatformVersion": "0x1",
+      "abbCerberusPcdVersion": "0x1",
+      "abbCerberusPfmVersion": "30",
+      "abbCerberusVersion": "1.5.6.2",
+      "abbCpldFile": "Camano_ABB_SCM_v00.04.03_signed.tar",
+      "abbCpldFwPath": "C:\\EV2_Recipe\\ABB\\CPLD\\Camano_ABB_SCM_CPLD_v00.04.03\\Camano_ABB_SCM_v00.04.03_signed.tar",
+      "abbCpldVersion": "0.4.3",
+      "abbFpgaFile": "CMN_ABB_FPGA_v01.03.02_signed.tar",
+      "abbFpgaFWPath": "C:\\EV2_Recipe\\ABB\\FPGA\\CMN_ABB_FPGA_v01.03.02\\CMN_ABB_FPGA_v01.03.02_signed.tar",
+      "abbFpgaVersion": "1302",
+      "biosFile": "L4B20.0.BS.1D12.GN.1_Signed.bin",
+      "biosFwPath": "C:\\EV2_Recipe\\MB\\BIOS\\L4B20.0.BS.1D12.GN1\\BIOS_Cerberus_Bypass\\L4B20.0.BS.1D12.GN.1_Signed.bin",
+      "biosPfmFile": "L4B20.BS.PFMv2.2.bin",
+      "biosPfmFwPath": "C:\\EV2_Recipe\\MB\\BIOS\\L4B20.0.BS.1D12.GN1\\BIOS_Cerberus_Active_PFM\\L4B20.BS.PFMv2.2.bin",
+      "biosPfmVersion": "30",
+      "biosVersion": "L4B20.0.BS.1D12.AI.1",
+      "bmcFanTableFile": "C2184_Camano-FanTable-DV-4.2.2.bin",
+      "bmcFanTableFwPath": "C:\\EV2_Recipe\\MB\\BMC\\C2184_Camano.BC.0204.01\\dv-fantable-4.2.2\\FanTable_DV_4.2.2\\C2184_Camano-FanTable-DV-4.2.2.bin",
+      "bmcFanTableVersion": "4.2.2",
+      "bmcFile": "C2184_Camano.BC.0204.01.bin",
+      "bmcFwPath": "C:\\EV2_Recipe\\MB\\BMC\\C2184_Camano.BC.0204.01\\C2184_Camano.BC.0204.01.bin",
+      "bmcInventoryFile": "C2184_Camano-Inventory-DV-1.2.13.bin.bin",
+      "bmcInventoryFwPath": "C:\\EV2_Recipe\\MB\\BMC\\C2184_Camano.BC.0204.01\\Inventory_DV_1.2.13\\C2184_Camano-Inventory-DV-1.2.13.bin",
+      "bmcInventoryVersion": "1.2.13",
+      "bmcPfmFile": "C2184_Camano.BC.PFMv2.30.bin",
+      "bmcPfmFwPath": "C:\\EV2_Recipe\\MB\\BMC\\C2184_Camano.BC.0204.01\\c2184_camano_bmc_pfm_2.4.1\\C2184_Camano.BC.PFMv2.30.bin",
+      "bmcPfmVersion": "30",
+      "bmcPowerCappingFile": "PowerCapping.bin",
+      "bmcPowercappingFwPath": "C:\\EV2_Recipe\\MB\\BMC\\C2184_Camano.BC.0204.01\\dv-powercapping-3.2.2\\PowerCapping.bin",
+      "bmcPowerCappingVersion": "3.2.2",
+      "bmcSdrGeneratorFile": "C2184_Camano-SDRGenerator-DV-6.2.6.bin",
+      "bmcSDRGeneratorFwPath": "C:\\EV2_Recipe\\MB\\BMC\\C2184_Camano.BC.0204.01\\SDRgenerator_DV_6.2.6\\C2184_Camano-SDRGenerator-DV-6.2.6.bin",
+      "bmcSdrGeneratorVersion": "6.2.6",
+      "bmcVersion": "C2184_Camano.BC.0204.01",
+      "cerberusPcdPlatformVersion": "0x1",
+      "cerberusPcdVersion": "0x2",
+      "cerberusVersion": "1.5.6.2",
+      "contentStoreSource": "VirtualClient",
+      "dcscmCerberusFile": "cerberus_v2.4.11.4.bin",
+      "dcscmCerberusFwPath": "C:\\EV2_Recipe\\MB\\Cerberus\\v1.5.6.2\\cerberus_v1.5.6.2.bin",
+      "dcscmCerberusVersion": "1.5.6.2",
+      "hpmFpgaFile": "C2184_HPM_FPGA_SIGNEDv01.07.00.jed",
+      "hpmFpgaFwPath": "C:\\EV2_Recipe\\MB\\FPGA\\C2184_HPM_FPGA_v01.07.00\\C2184_HPM_FPGA_SIGNEDv01.07.00.jed",
+      "hpmFpgaVersion": "010700",
+      "itRackManagerFirmwareVersion": "1.15.8",
+      "itRackPsuFile": "Delta_M1279935-900_P4010_V000D0F00.hex",
+      "itRackPsuVersion": "000A0E00",
+      "itRackScmCerberusFwPath": "C:\\EV2_Recipe\\IT Rack\\Cerberus in Rack-SCM\\1.5.7.0\\cerberus_v1.5.7.0.bin",
+      "itRackScmCerberusPcdFwPath": "C:\\EV2_Recipe\\IT Rack\\Cerberus PCD ID\\0x3\\M4010.PCD.0x3.bin",
+      "itRackScmCerberusPcdVersion": "0x3",
+      "itRackScmCerberusPfmVersion": "0xAE",
+      "itRackScmCerberusVersion": "1.5.7.0",
+      "itRackScmCpldFwPath": "C:\\EV2_Recipe\\IT Rack\\CPLD in Rack-SCM\\v27\\RACK_SCM_impl_a_v27_signed_40104927.jed",
+      "itRackScmCpldVersion": "V2.7",
+      "itRackScmFwPath": "C:\\EV2_Recipe\\IT Rack\\Rack-SCM\\1.15.8\\M4010.RSCM.SR2.PFMv2.174.bin",
+      "itRackScmPsuFwPath": "C:\\EV2_Recipe\\IT Rack\\PSU FW (P4010)\\V000D0F00\\Delta_M1279935-900_P4010_V000D0F00.hex",
+      "itRackScmPsuVersion": "000A0E00",
+      "oam1PSocFile": "C:\\\\EV2_Recipe\\\\OAM\\\\MSFT_1PSoC\\\\chie.athena.fw.images.1.5.0.2334\\\\release\\\\athenafw.pkg",
+      "oamAthenaDriverFile": "C:\\\\EV2_Recipe\\\\OAM\\\\ProdDriver\\\\Microsoft.Internal.Athena.Windows.Driver.Redist.x64.1.0.2718.64\\\\bin\\\\Driver",
+      "oamHspFile": "C:\\\\EV2_Recipe\\\\OAM\\\\HSP\\\\hsp.firmware.release.1.10.2.45\\\\HspReleaseBinaries\\\\LatestVersion\\\\spFlashSiliconProdPrime.dat",
+      "oamSprtFile": "C:\\\\EV2_Recipe\\\\OAM\\\\HSP\\\\hsp.firmware.release.1.10.2.45\\\\HspReleaseBinaries\\\\LatestVersion\\\\sprtTest.pkg",
+      "rackManagerFile": "m4010fwimage-1.15.8.tgz",
+      "rackManagerFirmwareVersion": "1.1.29.12",
+      "rackManagerFwPath": "C:\\EV2_Recipe\\IT Rack\\Rack Manager FW\\RM 1.1.29.12\\m2010fwimage-1.1.29.12.tgz",
+      "rackManagerIp": "10.10.10.10",
+      "rackManagerVersion": "1.1.27.8",
+      "rackScmCerberusFile": "cerberus_v1.5.7.0.bin",
+      "rackScmCerberusPcdFile": "M4010.PCD.0x3.bin",
+      "rackScmCerberusPcdVersion": "0x3",
+      "rackScmCerberusPfmFile": "M4010.RSCM.SR2.PFMv2.174.bin",
+      "rackScmCerberusPfmVersion": "0xAE",
+      "rackScmCerberusVersion": "1.5.6.2",
+      "rackscmCpldFile": "RACK_SCM_impl_a_v27_signed_40104927.jed",
+      "rackScmCpldVersion": "V2.7",
+      "rackScmFwPath": "C:\\EV2_Recipe\\IT Rack\\Rack-SCM\\1.15.8\\m4010fwimage-1.15.8.tgz",
+      "rackScmPfmFwPath": "C:\\EV2_Recipe\\RM\\RSCM\\M4010.RSCM.SR2.PFMv2.78.bin",
+      "rackScmVersion": "1.14.9",
+      "scmCpldFile": "C2184_SCM_CPLD_SIGNEDv02.01.00.jed",
+      "scmcpldFwPath": "C:\\EV2_Recipe\\MB\\CPLD\\C2184_SCM_CPLD_v02.01.00\\C2184_SCM_CPLD_SIGNEDv02.01.00.jed",
+      "sidekick1": "172.29.90.70",
+      "sidekick2": "172.29.90.67",
+      "sidekickRackScmCduVersion": "1.0.1",
+      "sidekickRackScmCerberusPcdVersion": "0x3",
+      "sidekickRackScmCerberusPfmVersion": "0xAE",
+      "sidekickRackScmCerberusVersion": "1.5.6.2",
+      "sidekickRackScmCpldVersion": "V2.7",
+      "sidekickRackScmnVentFwPath": "C\\EV2_Recipe\\SideKick\\nVent Controller\\1.0.2\\sidekick-1.0.2.dat",
+      "sideKickRackScmPsuFwPath": "Delta_M1212388-001_P4000_V00090E00.hex",
+      "sidekickRackScmPsuVersion": "000A0E00",
+      "skCduFile": "sidekick-1.0.2.dat",
+      "skCduVersion": "1.0.1",
+      "skPsuFile": "Delta_M1212388-001_P4000_V00090E00.hex",
+      "skPsuVersion": "000A0E00",
+      "socCerberusFile": "cerberus_v2.4.11.4.bin",
+      "socCerberusFwPath": "C:\\EV2_Recipe\\Overlake\\CP Cerberus\\v2.4.11.4\\cerberus_v2.4.11.4.bin",
+      "socCerberusVersion": "2.4.11.4",
+      "socFipFile": "fip_padded.bin",
+      "socFipFwPath": "C:\\EV2_Recipe\\Overlake\\SOC_FIP\\0002.17.240426-prd\\fip_padded.bin",
+      "socFipPfmFile": "A2040.FIP.PFM.50.bin",
+      "socFipPfmFwPath": "C:\\EV2_Recipe\\Overlake\\SOC FIP PFMID\\50\\A2040.FIP.PFM.50.bin",
+      "socFipPfmVersion": "50",
+      "socFipVersion": "0002.17.240426-prd",
+      "socNitroFile": "nitro.img",
+      "socNitroFwPath": "C:\\EV2_Recipe\\Overlake\\SOC_Nitro_FW\\0002.17.240426-prd\\nitro.img",
+      "socNitroPfmFile": "A2040.NITRO.PFM.42.bin",
+      "socNitroPfmFwPath": "C:\\EV2_Recipe\\Overlake\\SOC_Nitro_PFMID\\50\\A2040.NITRO.PFM.50.bin",
+      "socNitroPfmVersion": "50",
+      "socNitroVersion": "0002.06.210223-dev",
+      "toolkitVersion": "6.9.2.1479",
+      "vcPackage": "virtualclient.toolkit.1.15.2771.1405.zip",
+      "IgnoreFailure": "true",
+      "ITRackRackManagerFirmware": "1.15.8",
+      "ITRackRackScmCpld": "V2.7",
+      "ITRackRackScmCerberus": "1.5.7.0",
+      "ITRackRackScmCerberusPcd": "0x3",
+      "ITRackRackScmCerberusPfm": "0xAE",
+      "RackManagerFirmware": "1.1.29.12",
+      "ITRackRackScmPsu": "000A0E00",
+      "SidekickRackScmCpld": "V2.7",
+      "SidekickRackScmCerberus": "1.5.6.2",
+      "SidekickRackScmCerberusPcd": "0x3",
+      "SidekickRackScmPsu": "000A0E00",
+      "SidekickRackScmCerberusPfm": "0xAE",
+      "SidekickRackScmCdu": "1.0.1"
+    },
     "workflow": [
-        {"name": "Step 1", "type": "sequential", "parameters": {"task": "Start Process"}},
-        {"name": "Step 2", "type": "parallel", "parameters": {"task": "Parallel Task 1"}},
-        {"name": "Step 3", "type": "parallel", "parameters": {"task": "Parallel Task 2"}},
-        {"name": "Step 4", "type": "sequential", "parameters": {"task": "End Process"}}
+      {
+        "type": "Vega.Execution.Providers.Environment.EnvironmentSelectionProvider",
+        "name": "Initialize Experiment Environment",
+        "description": "Loads environments required for this experiment to the experiment's state in L10.",
+        "group": "L10",
+        "parameters": {
+          "labId": "TBD"
+        }
+      },
+      {
+        "type": "Vega.Execution.Providers.Environment.EnvironmentSelectionProvider",
+        "name": "Initialize Experiment Environment",
+        "description": "Loads environments required for this experiment to the experiment's state in L11.",
+        "group": "L11",
+        "parameters": {
+          "labId": "TBD"
+        }
+      },
+      {
+        "type": "ParallelExecution",
+        "name": "L10 MB and ABB OOB Get compliance",
+        "group": "L10",
+        "parameters": {},
+        "steps": [
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BIOS Firmware Version",
+            "description": "Get MB BIOS Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "Bios",
+              "ExpectedFirmwareVersion": "$.parameters.biosVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB DCSCM Cerberus Firmware Version",
+            "description": "Get MB DCSCM Cerberus Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "Cerberus",
+              "ExpectedFirmwareVersion": "$.parameters.cerberusVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB HPM FPGA Firmware Version",
+            "description": "Get MB HPM FPGA Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "Cpld",
+              "ExpectedFirmwareVersion": "$.parameters.hpmFpgaVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BMC Firmware Version",
+            "description": "Get MB BMC Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "Bmc",
+              "ExpectedFirmwareVersion": "$.parameters.bmcVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BMC Inventory Firmware Version",
+            "description": "Get MB BMC Inventory Firmware Version.",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "BmcInventory",
+              "ExpectedFirmwareVersion": "$.parameters.bmcInventoryVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BMC  SDRGenerator Firmware Version",
+            "description": "Get MB BMC SDRGenerator Firmware Version.",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "BmcSdrGenerator",
+              "ExpectedFirmwareVersion": "$.parameters.bmcSdrGeneratorVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BMC FanTable Firmware Version",
+            "description": "Get MB BMC FanTable Firmware Version.",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "BmcFanTable",
+              "ExpectedFirmwareVersion": "$.parameters.bmcFanTableVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BMC PowerCapping Firmware Version",
+            "description": "Get MB BMC PowerCapping Firmware Version.",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "BmcPowerCapping",
+              "ExpectedFirmwareVersion": "$.parameters.bmcPowerCappingVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BIOS PFM Version",
+            "description": "Get MB BIOS PFM Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "BiosPFM",
+              "RackManagerIp": "$.parameters.rackManagerIp",
+              "PortNumber": "@Slotid",
+              "FwRegion": "0",
+              "ExpectedFirmwareVersion": "$.parameters.biosPfmVersion",
+              "SkipRetry": "true",
+              "IgnoreFailure": "true"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB BMC PFM Version",
+            "description": "Get MB BMC PFM Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "BmcPFM",
+              "RackManagerIp": "$.parameters.rackManagerIp",
+              "PortNumber": "@Slotid",
+              "FwRegion": "0",
+              "ExpectedFirmwareVersion": "$.parameters.bmcPfmVersion",
+              "SkipRetry": "true",
+              "IgnoreFailure": "true"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB Cerberus PCD ID",
+            "description": "Get MB Cerberus PCD ID",
+            "group": "L10",
+            "parameters": {
+              "firmwareType": "RackScmCerberusPcd",
+              "ExpectedFirmwareVersion": "$.parameters.cerberusPcdVersion",
+              "clientType": "Ssh",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get MB Cerberus PCD Platform ID",
+            "description": "Get MB Cerberus PCD Platform ID",
+            "group": "L10",
+            "parameters": {
+              "firmwareType": "RackScmCerberusPcdPlatform",
+              "ExpectedFirmwareVersion": "$.parameters.cerberusPcdPlatformVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB BMC Firmware Version",
+            "description": "Get ABB BMC Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "AbbBmc",
+              "ExpectedFirmwareVersion": "$.parameters.abbBmcVersion",
+              "SlotType": "Abb",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB FPGA Firmware Version",
+            "description": "Get ABB FPGA Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "AbbFpga",
+              "ExpectedFirmwareVersion": "$.parameters.abbFpgaVersion",
+              "SlotType": "Abb",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB CPLD Firmware Version",
+            "description": "Get ABB CPLD Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "AbbCpld",
+              "ExpectedFirmwareVersion": "$.parameters.abbCpldVersion",
+              "SlotType": "Abb",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB Cerberus Firmware Version",
+            "description": "Get ABB Cerberus Firmware Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "AbbCerberus",
+              "ExpectedFirmwareVersion": "$.parameters.abbCerberusVersion",
+              "SlotType": "Abb",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB Cerberus PFM Active ID",
+            "description": "Get  ABB Cerberus PFM Active ID",
+            "group": "L10",
+            "parameters": {
+              "firmwareType": "RackScmCerberusPfm",
+              "ExpectedFirmwareVersion": "$.parameters.abbCerberusPfmVersion",
+              "slotType": "Abb",
+              "clientType": "Ssh",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB Cerberus PCD ID",
+            "description": "Get ABB Cerberus PCD ID",
+            "group": "L10",
+            "parameters": {
+              "firmwareType": "RackScmCerberusPcd",
+              "ExpectedFirmwareVersion": "$.parameters.abbCerberusPcdVersion",
+              "slotType": "Abb",
+              "clientType": "Ssh",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get ABB Cerberus PCD Platform ID",
+            "description": "Get ABB Cerberus PCD Platform ID",
+            "group": "L10",
+            "parameters": {
+              "firmwareType": "RackScmCerberusPcdPlatform",
+              "ExpectedFirmwareVersion": "$.parameters.abbCerberusPcdPlatformVersion",
+              "slotType": "Abb",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get OVL SoC Cerberus Version",
+            "description": "Get OVL SoC Cerberus Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "SocCerberus",
+              "ExpectedFirmwareVersion": "$.parameters.socCerberusVersion",
+              "ignoreFailure": true,
+              "SkipRetry": "true"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get OVL SoC FIP PFM Version",
+            "description": "Get OVL SoC FIP PFM Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "SocFIPPFM",
+              "ExpectedFirmwareVersion": "$.parameters.socFipPfmVersion",
+              "ignoreFailure": true,
+              "SkipRetry": "true"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get OVL SoC Nitro PFM Version",
+            "description": "Get OVL SoC Nitro PFM Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "SocNITROPFM",
+              "ExpectedFirmwareVersion": "$.parameters.socNitroPfmVersion",
+              "ignoreFailure": true,
+              "SkipRetry": "true"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get SoC FIP Version",
+            "description": "Get OVL SoC FIP Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "SocFIP",
+              "ExpectedFirmwareVersion": "$.parameters.socFIPVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Fabric.OobFirmwareActions.OobFirmwareUpdateCheckProvider",
+            "name": "Get OVL SoC NITRO Version",
+            "description": "Get SoC NITRO Version",
+            "group": "L10",
+            "parameters": {
+              "FirmwareType": "SocNITRO",
+              "ExpectedFirmwareVersion": "$.parameters.socNitroVersion",
+              "IgnoreFailure": "true",
+              "SkipRetry": "true",
+              "ContentStoreSource": "$.parameters.contentStoreSource"
+            }
+          },
+          {
+            "type": "Vega.Execution.Providers.Workloads.VirtualClientProvider",
+            "name": "L10 inband",
+            "description": "Run a Virtual Client command through system agent",
+            "group": "L10",
+            "parameters": {
+              "virtualClientPackage": "virtualclient.toolkit.1.15.2730.1342.zip",
+              "profile": "TOOLKIT.json",
+              "profileCycles": 1,
+              "scenarios": "TEC-GET-OAM-Count",
+              "IgnoreFailure": "true",
+              "Parameters": "ToolkitCommand=Run-Parallel,,,ToolkitParameters=-RunCommands 'AresLib.GetOAMDeviceCount', 'LogVersion-NIC-Driver', 'LogVersion-NIC-FW', 'LogVersion-OAM' -TimeoutInMin 40 -RunAsChild,,,ContentStoreSource=VirtualClient"
+            }
+          }
+        ]
+      }
     ]
-}
+  }

@@ -1,0 +1,60 @@
+{
+    "name": "Test json",
+    "description": "Test json.",
+    "contentVersion": "1.0.0",
+    "$schema": "basic schema",
+    "metadata": {
+        "revision": "v3"
+    },
+    "parameters": {
+        "vcPackage": "",
+        "abbBmcVersion": "",
+        "abbBmcFile": ""
+    },
+    "workflow": [
+        {
+            "type": "Type 1",
+            "name": "Initialize experiment environment.",
+            "description": "New desc",
+            "group": "Group A",
+            "parameters": {
+                "param1": "1345",
+                "param2": "1423"
+            }
+        },
+        {
+            "type": "ParallelExecution",
+            "name": "Update phase 1 FWs for L10",
+            "group": "Group A",
+            "description": "New desc",
+            "parameters": {},
+            "steps": [
+                {
+                    "type": "Type 3",
+                    "name": "Perform BIOS OOB firmware update.",
+                    "description": "New desc",
+                    "group": "Group A",
+                    "parameters": {
+                        "param1": "val1"
+                    }
+                },
+                {
+                    "type": "Type 2",
+                    "name": "Perfm OOB firmware update for SoC Cerberus",
+                    "description": "Updates the current firmware version on the Rack SCM.",
+                    "group": "Group A",
+                    "parameters": {
+                        "param1": "val1"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Vega.Execution.Providers.Reporting.LogComplianceResultsProvider",
+            "name": "Consolidate Compliance Results",
+            "description": "Logs compliance results to the results explorer",
+            "group": "Group A",
+            "parameters": {}
+        }
+    ]
+}
