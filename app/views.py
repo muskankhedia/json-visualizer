@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify, render_template
 from .chart import draw_workflow_chart
+from app.models.validate import validate_parameters
+from app.models.replace_parameters import replace_parameters
 import json
 import io
 import base64
@@ -22,9 +24,9 @@ def upload_file():
             "revision": "v3"
         },
         "parameters": {
-            "vcPackage": "",
-            "abbBmcVersion": "",
-            "abbBmcFile": ""
+            "vcPackage": "123",
+            "abbBmcVersion": "456",
+            "abbBmcFile": "789"
         },
         "workflow": [
             {
@@ -50,7 +52,7 @@ def upload_file():
                         "description": "New desc",
                         "group": "Group A",
                         "parameters": {
-                            "param1": "val1"
+                            "param1": "$.parameters.vcPackaage"
                         }
                     },
                     {
@@ -59,7 +61,7 @@ def upload_file():
                         "description": "New desc",
                         "group": "Group A",
                         "parameters": {
-                            "param2": "val2"
+                            "param2": "$.parameters.abbBmcVersion"
                         }
                     },
                     {
@@ -68,7 +70,7 @@ def upload_file():
                         "description": "Updates the current firmware version on the Rack SCM.",
                         "group": "Group A",
                         "parameters": {
-                            "param1": "val1"
+                            "param1": "$.parameters.abbBmcFile"
                         }
                     }
                 ]
@@ -84,13 +86,31 @@ def upload_file():
     }
 
 
-    # Use the hardcoded JSON data
-    dot = draw_workflow_chart(json_data)
+    # Validate parameters
+    # validation_errors = validate_parameters(json_data)
+    # if validation_errors:
+    #     return jsonify({'success': False, 'errors': validation_errors})
+
+    # # If validation passes, proceed with chart generation
+    # dot = draw_workflow_chart(json_data)
+
+    # img_stream = io.BytesIO(dot.pipe(format='png'))
+    # img_base64 = base64.b64encode(img_stream.getvalue()).decode('utf-8')
+
+    # return jsonify({'success': True, 'image': img_base64})
+
+    # Replace parameter references with actual values
+    updated_json = replace_parameters(json_data)
+
+    # If needed, you can validate the updated_json here
+
+    # Proceed with chart generation using the updated JSON
+    dot = draw_workflow_chart(updated_json)
 
     img_stream = io.BytesIO(dot.pipe(format='png'))
     img_base64 = base64.b64encode(img_stream.getvalue()).decode('utf-8')
 
-    return jsonify({'success': True, 'image': img_base64})
+    return jsonify({'success': True, 'image': img_base64, 'updated_json': updated_json})
 
 
 # def upload_file():
@@ -104,6 +124,7 @@ def upload_file():
 #     if file and file.filename.endswith('.json'):
 #         json_data = json.load(file)
 #         dot = draw_workflow_chart(json_data)
+
 
 #         img_stream = io.BytesIO(dot.pipe(format='png'))
 #         img_base64 = base64.b64encode(img_stream.getvalue()).decode('utf-8')
