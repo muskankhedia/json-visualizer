@@ -17,34 +17,66 @@ def draw_vertical_workflow_chart(workflow_data):
     def format_parameters(params):
         return "\n".join([f"{k}: {v}" for k, v in params.items()])
 
+    def consolidate_parallel_steps(steps):
+        """
+        Consolidates steps with the same type within parallel execution.
+        Returns a list of consolidated steps.
+        """
+        consolidated = {}
+        
+        for step in steps:
+            step_type = step['type']
+            if step_type not in consolidated:
+                consolidated[step_type] = {
+                    'name': step_type,
+                    'parameters': step['parameters'].copy(),
+                    'description': step.get('description', ''),
+                    'group': step.get('group', ''),
+                }
+            else:
+                # If the type already exists, merge the parameters
+                for k, v in step['parameters'].items():
+                    consolidated[step_type]['parameters'][k] = v
+        
+        return list(consolidated.values())
+
     def add_step(dot, step, parent=None):
         step_name = step['name']
         parameters = step['parameters']
         params_str = format_parameters(parameters)
 
-        # Create a node for the current step
-        dot.node(step_name, label=f'{step_name}\n{params_str}')
-        
-        # If there's a parent, connect it to the current step
+        # Create a rectangular node for the current step
+        dot.node(step_name, label=f'{step_name}\n{params_str}', shape='box', style='rounded')
+
+        # If there's a parent step, connect it to the current step
         if parent:
             dot.edge(parent, step_name)
         
         # Handle parallel steps
         if 'steps' in step and step['type'] == 'ParallelExecution':
+            # Consolidate parallel steps with the same type
+            consolidated_steps = consolidate_parallel_steps(step['steps'])
+
             # Create a dummy node for consolidation after parallel execution
             parallel_end = f"parallel_end_{step_name}"
             dot.node(parallel_end, shape="point", width="0.1")
 
-            # Keep track of all parallel steps
+            # Keep track of all consolidated steps
             parallel_group = []
-            for sub_step in step['steps']:
-                add_step(dot, sub_step, step_name)
-                parallel_group.append(sub_step['name'])
-            
+            for sub_step in consolidated_steps:
+                # Use the consolidated step type as the node name
+                sub_step_name = sub_step['name']
+                sub_params_str = format_parameters(sub_step['parameters'])
+                dot.node(sub_step_name, label=f'{sub_step_name}\n{sub_params_str}', shape='box', style='rounded')
+
+                # Connect each consolidated parallel step to the parent (start of parallel block)
+                dot.edge(step_name, sub_step_name)
+                parallel_group.append(sub_step_name)
+
             # After processing parallel steps, connect all parallel steps to the dummy node
             for task in parallel_group:
                 dot.edge(task, parallel_end)
-            
+
             # Return the dummy node as the new parent for the next sequential step
             return parallel_end
         else:
@@ -61,6 +93,7 @@ def draw_vertical_workflow_chart(workflow_data):
             previous_step = add_step(dot, step, previous_step)
 
     return dot
+
 
 @app.route('/')
 def index():
