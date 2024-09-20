@@ -35,7 +35,7 @@
                     "description": "New desc",
                     "group": "Group A",
                     "parameters": {
-                        "param1": "val1"
+                        "param1": "$.parameter.vcPackage"
                     }
                 },
                 {
@@ -44,7 +44,7 @@
                     "description": "New desc",
                     "group": "Group A",
                     "parameters": {
-                        "param2": "val2"
+                        "param2": "$.parameters.abbBmcVersion"
                     }
                 },
                 {
@@ -53,7 +53,7 @@
                     "description": "Updates the current firmware version on the Rack SCM.",
                     "group": "Group A",
                     "parameters": {
-                        "param1": "val1"
+                        "param1": "$.parameters.abbBmcFile"
                     }
                 }
             ]
