@@ -13,36 +13,53 @@ def format_parameters(params):
 
 def draw_vertical_workflow_chart(workflow_data):
     dot = graphviz.Digraph(format='png', graph_attr={'rankdir': 'TB'}, strict=True)
-    
-    parallel_group = []
-    previous_step = None
-    
-    for step in workflow_data['workflow']:
+
+    def format_parameters(params):
+        return "\n".join([f"{k}: {v}" for k, v in params.items()])
+
+    def add_step(dot, step, parent=None):
         step_name = step['name']
         parameters = step['parameters']
         params_str = format_parameters(parameters)
-        
+
+        # Create a node for the current step
         dot.node(step_name, label=f'{step_name}\n{params_str}')
         
-        if step['type'] == 'parallel':
-            parallel_group.append(step_name)
-        else:
-            if parallel_group:
-                for task in parallel_group:
-                    dot.edge(previous_step, task)
-                for task in parallel_group:
-                    dot.edge(task, step_name)
-                parallel_group = []
-                
-            if previous_step:
-                dot.edge(previous_step, step_name)
+        # If there's a parent, connect it to the current step
+        if parent:
+            dot.edge(parent, step_name)
         
-        previous_step = step_name
-    
-    if parallel_group:
-        for task in parallel_group:
-            dot.edge(previous_step, task)
-    
+        # Handle parallel steps
+        if 'steps' in step and step['type'] == 'ParallelExecution':
+            # Create a dummy node for consolidation after parallel execution
+            parallel_end = f"parallel_end_{step_name}"
+            dot.node(parallel_end, shape="point", width="0.1")
+
+            # Keep track of all parallel steps
+            parallel_group = []
+            for sub_step in step['steps']:
+                add_step(dot, sub_step, step_name)
+                parallel_group.append(sub_step['name'])
+            
+            # After processing parallel steps, connect all parallel steps to the dummy node
+            for task in parallel_group:
+                dot.edge(task, parallel_end)
+            
+            # Return the dummy node as the new parent for the next sequential step
+            return parallel_end
+        else:
+            return step_name
+
+    # Iterate over the workflow and add each step
+    previous_step = None
+    for step in workflow_data['workflow']:
+        if step['type'] == 'ParallelExecution':
+            # For ParallelExecution, process the steps inside and return the last step
+            previous_step = add_step(dot, step, previous_step)
+        else:
+            # For normal steps, process them sequentially
+            previous_step = add_step(dot, step, previous_step)
+
     return dot
 
 @app.route('/')
@@ -189,7 +206,6 @@ def download_chart():
 @app.errorhandler(Exception)
 def handle_exception(e):
     error_message = str(e)
-    # You can also print the full traceback if needed
     return f"An error occurred! {error_message}", 500
 
 if __name__ == '__main__':

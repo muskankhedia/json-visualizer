@@ -39,6 +39,15 @@
                     }
                 },
                 {
+                    "type": "Type 3",
+                    "name": "Perform BIOS OOB firmware update.",
+                    "description": "New desc",
+                    "group": "Group A",
+                    "parameters": {
+                        "param2": "val2"
+                    }
+                },
+                {
                     "type": "Type 2",
                     "name": "Perfm OOB firmware update for SoC Cerberus",
                     "description": "Updates the current firmware version on the Rack SCM.",
