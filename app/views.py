@@ -52,16 +52,16 @@ def upload_example_file():
                         "description": "New desc",
                         "group": "Group A",
                         "parameters": {
-                            "param1": "$.parameters.vcPackaage"
+                            "biosVersion": "$.parameters.vcPackaage"
                         }
                     },
                     {
                         "type": "Type 3",
-                        "name": "Perform BIOS OOB firmware update.",
+                        "name": "Perform ABB BMC OOB firmware update.",
                         "description": "New desc",
                         "group": "Group A",
                         "parameters": {
-                            "param2": "$.parameters.abbBmcVersion"
+                            "bmcVersion": "$.parameters.abbBmcVersion"
                         }
                     },
                     {
