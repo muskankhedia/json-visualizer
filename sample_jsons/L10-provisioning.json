@@ -7,9 +7,9 @@
         "revision": "v3"
     },
     "parameters": {
-        "vcPackage": "",
-        "abbBmcVersion": "",
-        "abbBmcFile": ""
+        "vcPackage": "1.12.13.1",
+        "abbBmcVersion": "1.2.1",
+        "abbBmcFile": "123"
     },
     "workflow": [
         {
@@ -35,7 +35,7 @@
                     "description": "New desc",
                     "group": "Group A",
                     "parameters": {
-                        "param1": "$.parameter.vcPackage"
+                        "param1": "$.parameters.vcPackage"
                     }
                 },
                 {

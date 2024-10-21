@@ -12,8 +12,8 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-@main.route('/upload', methods=['POST'])
-def upload_file():
+@main.route('/uploadExample', methods=['POST'])
+def upload_example_file():
     # Hardcoded JSON data instead of reading from uploaded file
     json_data = {
         "name": "Test json",
@@ -113,22 +113,29 @@ def upload_file():
     return jsonify({'success': True, 'image': img_base64, 'updated_json': updated_json})
 
 
-# def upload_file():
-#     if 'file' not in request.files:
-#         return jsonify({'success': False, 'error': 'No file part'})
+@main.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'success': False, 'error': 'No file part'})
 
-#     file = request.files['file']
-#     if file.filename == '':
-#         return jsonify({'success': False, 'error': 'No selected file'})
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'success': False, 'error': 'No selected file'})
 
-#     if file and file.filename.endswith('.json'):
-#         json_data = json.load(file)
-#         dot = draw_workflow_chart(json_data)
+    if file and file.filename.endswith('.json'):
+        json_data = json.load(file)
+        updated_json = replace_parameters(json_data)
 
+        # print updated_json
 
-#         img_stream = io.BytesIO(dot.pipe(format='png'))
-#         img_base64 = base64.b64encode(img_stream.getvalue()).decode('utf-8')
+        # If needed, you can validate the updated_json here
 
-#         return jsonify({'success': True, 'image': img_base64})
-#     else:
-#         return jsonify({'success': False, 'error': 'Invalid file format. Please upload a .json file.'})
+        # Proceed with chart generation using the updated JSON
+        dot = draw_workflow_chart(updated_json)
+
+        img_stream = io.BytesIO(dot.pipe(format='png'))
+        img_base64 = base64.b64encode(img_stream.getvalue()).decode('utf-8')
+
+        return jsonify({'success': True, 'image': img_base64, 'updated_json': updated_json})
+    else:
+        return jsonify({'success': False, 'error': 'Invalid file format. Please upload a .json file.'})
