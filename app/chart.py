@@ -3,14 +3,16 @@ from .utils import format_parameters
 
 def draw_workflow_chart(workflow_data):
     """
-    Draw the flowchart with enhanced visualization for sequential and parallel steps.
-    Consolidated steps are displayed in a more structured and readable manner.
+    Draw the flowchart with enhanced visualization for large workflows with many parallel and sequential steps.
+    The chart uses grouping, colors, and compact representations to handle 200+ steps cleanly.
     """
     dot = graphviz.Digraph(format='png', graph_attr={'rankdir': 'TB'}, node_attr={'shape': 'rect'}, strict=True)
     
     previous_step = None  # Tracks the previous step in sequential steps
     parallel_end = None   # Tracks parallel end nodes for reconnection
     root_parameters = workflow_data.get('parameters', {})  # Root-level parameters
+    
+    color_map = {'ParallelExecution': 'lightblue', 'SequentialExecution': 'lightgrey'}
     
     # Iterate over the main workflow steps
     for i, step in enumerate(workflow_data['workflow']):
@@ -49,14 +51,14 @@ def draw_workflow_chart(workflow_data):
                 with dot.subgraph() as sub:
                     sub.attr(rank='same')  # Ensure steps are ranked the same
 
-                    # Create a more readable format using bullet points and indentation
+                    # Create a cleaner format using indentation
                     formatted_steps = "<br align='left'/>".join([
                         f"• <b>{step_name}</b>: {params}" if params else f"• <b>{step_name}</b>"
                         for step_name, params in steps
                     ])
                     
                     # Create a node with the consolidated steps and parameters
-                    sub.node(step_type, label=f'<<b>{step_type}</b><br align="left"/>{formatted_steps}>', shape='rect')
+                    sub.node(step_type, label=f'<<b>{step_type}</b><br align="left"/>{formatted_steps}>', shape='rect', style='filled', fillcolor=color_map.get('ParallelExecution', 'lightgrey'))
                     parallel_group.append(step_type)  # Add the step type to the parallel group
             
             # Connect previous step to each of the parallel nodes
@@ -71,7 +73,7 @@ def draw_workflow_chart(workflow_data):
         else:  # Handle Sequential steps
             # Create a node for the current sequential step with improved formatting
             formatted_step = f'<<b>{step_name}</b><br align="left"/>{params_str}>'
-            dot.node(step_name, label=formatted_step, shape='rect')
+            dot.node(step_name, label=formatted_step, shape='rect', style='filled', fillcolor=color_map.get('SequentialExecution', 'lightgrey'))
             
             # If there was a parallel execution before this step, connect the parallel end to this step
             if parallel_end:
